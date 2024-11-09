@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-import { getAllStarships } from "../utilities/controllers.mjs"
+import { getAllStarships } from '../utilities/controllers.mjs';
+
 
 export default function StarshipInfo(){
     const {id} = useParams()
@@ -22,8 +23,10 @@ export default function StarshipInfo(){
         return (
         <div>
             <h1>
-            {starShip.name}/{starShip.model}
+            {starShip.name}/{starShip.manufacturer}
             </h1>
+            <p>Cargo Capacity: {starShip.cargo_capacity}</p>
+            <p>Passengers: {starShip.passengers}</p>
         </div>
         );
     };

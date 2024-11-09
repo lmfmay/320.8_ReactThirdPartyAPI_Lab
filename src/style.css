@@ -25,12 +25,12 @@ div .app {
   justify-content: center;
 }
 
-.card a{
+div .card a{
   text-decoration: none;
   color: black;
   cursor: pointer;
 }
 
-.card a:hover{
+div .card a:hover{
   color: aqua;
 }

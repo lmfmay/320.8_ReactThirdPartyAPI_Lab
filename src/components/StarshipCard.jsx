@@ -1,28 +1,29 @@
 
 import { Link } from "react-router-dom";
-
+import { getAllStarships } from "../utilities/controllers.mjs"
+import { useState, useEffect } from 'react'
 
 export default function StarshipCard(){
-    const starships = [
-        {name: 'CR90 corvette'},
-        {name: 'Star Destroyer'},
-        {name: 'Sentinel-class landing craft'},
-        {name: 'Death Star'},
-        {name: 'Millennium Falcon'},
-        {name: 'Y-wing'},
-        {name: 'X-wing'},
-        {name: 'TIE Advanced x1'},
-        {name: 'Executor'},
-        {name: 'Rebel transport'}
-    ]
-        
+    let url = `https://swapi.dev/api/starships/`
+    const [starShips, setStarships] = useState([])
+
+    async function getStarships (){
+        let res = await getAllStarships(url);
+        res = res.results
+        setStarships(res)
+      }
+    useEffect(()=>{
+        getStarships()
+    },[])
+     
 return(
     <>
-        {starships.map((starship) => {
-            const { name } = starship;
+        {starShips.map((starship,i) => {
+            const { name, url } = starship;
+            let id = url.substring(32)
             return (
-                <div className="card">
-                    <Link to={`/starships/${name}`}>
+                <div className="card" key={i}>
+                    <Link to={`/starships/${id}`}>
                         <h2>{name}</h2>
                     </Link>
                 </div>
@@ -31,15 +32,3 @@ return(
     </>
 )
 }
-
-{/* <div className="currencies">
-            {currencies.map((coin) => {
-                const { name, symbol } = coin;
-
-                return (
-                    <Link to={`/price/${symbol}`}>
-                        <h2>{name}</h2>
-                    </Link>
-                );
-            })}
-        </div> */}

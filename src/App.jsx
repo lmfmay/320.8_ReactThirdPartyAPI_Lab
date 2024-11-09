@@ -11,7 +11,7 @@ function App() {
       <h1 className='header'>StarShips</h1>
       <Routes>
             <Route path='/' element={<StarshipCard/>}/>
-            <Route path='/starships/:name' element={<StarshipInfo/>}/>
+            <Route path='/starships/:id' element={<StarshipInfo/>}/>
       </Routes>
       </div>
     </>
